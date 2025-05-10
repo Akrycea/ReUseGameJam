@@ -7,10 +7,7 @@ public class NpcManager : MonoBehaviour
 {
     public HppinessCount happyCount;
     public SpriteRenderer spriteRenderer;
-
-    //preferencje npc
-    public int preference1;
-    public int preference2;
+    
 
     //odbłusga npc
     public bool selected;
@@ -19,8 +16,11 @@ public class NpcManager : MonoBehaviour
     public GameObject[] portret;
     Collider2D collider;
 
+ 
+
     void Start()
     {
+
         selected = false;
         collider = gameObject.GetComponent<Collider2D>();
         foreach (var obj in portret)
@@ -50,6 +50,7 @@ public class NpcManager : MonoBehaviour
                 obj.SetActive(false);
             }
         }
+  
         
         
     }
@@ -84,7 +85,7 @@ public class NpcManager : MonoBehaviour
         //przenosi npc na miejsce
         if (Input.GetMouseButtonDown(0) && rayHit.transform.CompareTag("SEAT")) 
         {
- 
+            happyCount.turnCount++;
             Debug.Log("chose seat");
             selectedNpc.transform.position = rayHit.transform.position + new Vector3(0, 0, 1);
 
