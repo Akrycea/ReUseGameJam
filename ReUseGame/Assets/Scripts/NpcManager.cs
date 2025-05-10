@@ -16,6 +16,10 @@ public class NpcManager : MonoBehaviour
     public GameObject[] portret;
     Collider2D collider;
 
+    public AudioSource footSound;
+    public AudioSource voiceSound;
+    public AudioSource woodSound;
+
  
 
     void Start()
@@ -66,6 +70,8 @@ public class NpcManager : MonoBehaviour
                 Debug.Log("selected npc");
                 selected = true;
                 selectedNpc = gameObject;
+                voiceSound.Play();
+                
             }
             //to nie działa lol 
             //else if (selected == true)
@@ -88,7 +94,7 @@ public class NpcManager : MonoBehaviour
             happyCount.turnCount++;
             Debug.Log("chose seat");
             selectedNpc.transform.position = rayHit.transform.position + new Vector3(0, 0, 1);
-
+            footSound.Play();
             //liczy punkty
 
                 //FULL PUNKTY
@@ -97,21 +103,25 @@ public class NpcManager : MonoBehaviour
                     happyCount.happiness = happyCount.happiness + 2;
                     selectedNpc = null;
                     selected = false;
+                    woodSound.Play();
                 }
                 else if (selectedNpc.name == "IsleFar" && rayHit.transform.name == "IsleFar")
                 {
                     happyCount.happiness = happyCount.happiness +2;
                     selectedNpc = null;
-                }
+                    woodSound.Play();
+            }
                 else if (selectedNpc.name == "WindowNear" && rayHit.transform.name == "WindowNear")
                 {
                     happyCount.happiness = happyCount.happiness +2;
                     selectedNpc = null;
+                    woodSound.Play();
                 }
                 else if (selectedNpc.name == "IsleNear" && rayHit.transform.name == "IsleNear")
                 {
                     happyCount.happiness = happyCount.happiness +2;
                     selectedNpc = null;
+                     woodSound.Play();
                 }
 
                 //PUNKTY CZĘŚCIOWE
@@ -121,6 +131,7 @@ public class NpcManager : MonoBehaviour
                     happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
                     selected = false;
+                     woodSound.Play();
                 }
 
                 else if (selectedNpc.name == "Far" || selectedNpc.name == "Window" || selectedNpc.name == "IsleFar" 
@@ -129,6 +140,7 @@ public class NpcManager : MonoBehaviour
                     happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
                     selected = false;
+                     woodSound.Play();
                 }
 
                 else if (selectedNpc.name == "Near" || selectedNpc.name == "Isle" || selectedNpc.name == "IsleFar" 
@@ -137,6 +149,7 @@ public class NpcManager : MonoBehaviour
                     happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
                     selected = false;
+                    woodSound.Play();
                 }
 
                 else if (selectedNpc.name == "Near" || selectedNpc.name == "Window" || selectedNpc.name == "IsleNear" 
@@ -145,6 +158,7 @@ public class NpcManager : MonoBehaviour
                     happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
                     selected = false;
+                     woodSound.Play();
                 }
                 
 
