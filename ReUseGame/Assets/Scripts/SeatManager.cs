@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class SeatManager : MonoBehaviour
 {
-    //przy oknie czy stoj¹co
-    public bool isWindow;
-    //czy blisko wejœcia
-    public bool isNear;
-    public bool isFar;
-    public bool isMid;
+
     
     void Start()
     {
@@ -21,4 +16,5 @@ public class SeatManager : MonoBehaviour
     {
         
     }
+
 }

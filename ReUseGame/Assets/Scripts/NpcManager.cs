@@ -16,12 +16,17 @@ public class NpcManager : MonoBehaviour
     public bool selected;
     public GameObject selectedNpc;
     public Sprite[] sprites;
+    public GameObject[] portret;
     Collider2D collider;
 
     void Start()
     {
         selected = false;
         collider = gameObject.GetComponent<Collider2D>();
+        foreach (var obj in portret)
+        {
+            obj.SetActive(false);
+        }
     }
 
     
@@ -32,10 +37,18 @@ public class NpcManager : MonoBehaviour
         {
             spriteRenderer.sprite = sprites[1];
             choosingSeat();
+            foreach (var obj in portret)
+            {
+                obj.SetActive(true);
+            }
         }
         else
         {
             spriteRenderer.sprite = sprites[0];
+            foreach (var obj in portret)
+            {
+                obj.SetActive(false);
+            }
         }
         
         
@@ -75,48 +88,70 @@ public class NpcManager : MonoBehaviour
             Debug.Log("chose seat");
             selectedNpc.transform.position = rayHit.transform.position + new Vector3(0, 0, 1);
 
+            //liczy punkty
+
+                //FULL PUNKTY
                 if (selectedNpc.name == "WindowFar" && rayHit.transform.name == "WindowFar")
                 {
-                    happyCount.happiness = +2;
+                    happyCount.happiness = happyCount.happiness + 2;
+                    selectedNpc = null;
+                    selected = false;
+                }
+                else if (selectedNpc.name == "IsleFar" && rayHit.transform.name == "IsleFar")
+                {
+                    happyCount.happiness = happyCount.happiness +2;
+                    selectedNpc = null;
+                }
+                else if (selectedNpc.name == "WindowNear" && rayHit.transform.name == "WindowNear")
+                {
+                    happyCount.happiness = happyCount.happiness +2;
+                    selectedNpc = null;
+                }
+                else if (selectedNpc.name == "IsleNear" && rayHit.transform.name == "IsleNear")
+                {
+                    happyCount.happiness = happyCount.happiness +2;
+                    selectedNpc = null;
+                }
+
+                //PUNKTY CZĘŚCIOWE
+                else if (selectedNpc.name == "Far" || selectedNpc.name == "Isle" || selectedNpc.name == "IsleNear" 
+                || selectedNpc.name == "WindowFar" && rayHit.transform.name == "IsleFar")
+                {
+                    happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
                     selected = false;
                 }
 
-                else if (selectedNpc.name == "IsleFar" && rayHit.transform.name == "IsleFar")
+                else if (selectedNpc.name == "Far" || selectedNpc.name == "Window" || selectedNpc.name == "IsleFar" 
+                || selectedNpc.name == "WindowNear" && rayHit.transform.name == "WindowFar")
                 {
-                    happyCount.happiness = +2;
+                    happyCount.happiness = happyCount.happiness +1;
                     selectedNpc = null;
+                    selected = false;
                 }
+
+                else if (selectedNpc.name == "Near" || selectedNpc.name == "Isle" || selectedNpc.name == "IsleFar" 
+                || selectedNpc.name == "WindowNear" && rayHit.transform.name == "IsleNear")
+                {
+                    happyCount.happiness = happyCount.happiness +1;
+                    selectedNpc = null;
+                    selected = false;
+                }
+
+                else if (selectedNpc.name == "Near" || selectedNpc.name == "Window" || selectedNpc.name == "IsleNear" 
+                || selectedNpc.name == "WindowFar" && rayHit.transform.name == "WindowNear")
+                {
+                    happyCount.happiness = happyCount.happiness +1;
+                    selectedNpc = null;
+                    selected = false;
+                }
+                
+
             selected = false;
             selectedNpc = null;
         }
-        countHappiness();
+   
     }
 
-    void countHappiness()
-    {
-       
-        //if(gameObject.name == "WindowFar" && collider  )
-        //if (selectedNpc.name == "WindowFar" && rayHit.transform.name == "WindowFar")
-        //{
-        //    happyCount.happiness = +2;
-        //    selectedNpc = null;
-        //    selected = false;
-        //}
-
-        //else if (selectedNpc.name == "IsleFar" && rayHit.transform.name == "IsleFar")
-        //{
-        //    happyCount.happiness = +2;
-        //    selectedNpc = null;
-        //}
-    }
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("touvh");
-    //    if (gameObject.name == "WindowFar" && collision.gameObject.name == "WindowFar")
-    //    {
-    //        happyCount.happiness++;
-    //    }
-    //}
 
 }
