@@ -24,7 +24,7 @@ public class Touch1 : MonoBehaviour
         {
             if (colliderSelf.IsTouching(collider))
             {
-                happinesCount.happiness++;
+                happinesCount.happiness--;
             }
 
         }
