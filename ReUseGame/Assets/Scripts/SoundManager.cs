@@ -26,10 +26,6 @@ public class MusicManager : MonoBehaviour
         musicSource.volume = 0.3f;
     }
 
-    private void Update()
-    {
-        musicSource.volume = 0.1f;
-    }
 
     public void PlayMusic(string trackName, float fadeDuration = 0.5f)
     {

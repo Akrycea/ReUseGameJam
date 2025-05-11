@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
+    
     private void Start()
     {
         MusicManager.Instance.PlayMusic("MainTrack");
     }
     public void StartGame()
     {
- 
+        
         SceneManager.LoadScene(1);
 
     }
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void ToMainMenu()
     {
-       
+        
         SceneManager.LoadScene(0);
     }
 

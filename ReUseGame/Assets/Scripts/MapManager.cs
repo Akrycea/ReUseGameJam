@@ -7,6 +7,7 @@ public class MapManager : MonoBehaviour
     public GameObject map;
     public Animator mapAnim;
     private bool mapOpen;
+    public AudioSource mapAudio;
    
     void Start()
     {
@@ -34,11 +35,13 @@ public class MapManager : MonoBehaviour
         {
             map.SetActive(false);
             mapOpen = false;
+            mapAudio.Play();
         }
         else if (!mapOpen)
         {
             map.SetActive(true);
             mapOpen = true;
+            mapAudio.Play();
             
         }
     }
